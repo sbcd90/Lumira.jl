@@ -1,4 +1,4 @@
-using LumiraGadfly 
+using Lumira 
 using Gadfly
 using Base.Test
 
