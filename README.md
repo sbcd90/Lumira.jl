@@ -10,6 +10,9 @@ SAP Lumira is a visualization tool developed by SAP SE & can be downloaded from 
 
 
 #Installation
+      - git clone -q git@github.com:sbcd90/Lumira.jl.git Lumira
+      - Add it to .julia
+
 
 
 #Examples
