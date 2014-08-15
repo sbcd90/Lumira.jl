@@ -14,5 +14,6 @@ before_install:
   - sudo apt-get install libpcre3-dev julia -y
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 script:
-  - julia -e 'Pkg.init(); Pkg.clone(pwd()); Pkg.test("Lumira")'
+  - julia -e 'Pkg.init(); run(`ln -s $(pwd()) $(Pkg.dir("Lumira"))`); Pkg.pin("Lumira"); Pkg.resolve()'
+  - julia -e 'using Lumira; @assert isdefined(:Lumira); @assert typeof(Lumira) === Module'
   - julia test/runtests.jl;
