@@ -1,5 +1,7 @@
 # Lumira
 
+[![Build Status](https://travis-ci.org/sbcd90/Lumira.jl.svg?branch=master)](https://travis-ci.org/sbcd90/Lumira.jl)
+
 
 Julia Library which allows developing Lumira extensions using Gadfly.
 
