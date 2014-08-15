@@ -1,1 +1,30 @@
 # Lumira
+
+
+Julia Library which allows developing Lumira extensions using Gadfly.
+
+Gadfly is a drawing library package written in julia which implements the grammar of graphics approach
+
+SAP Lumira is a visualization tool developed by SAP SE & can be downloaded from                                                     [SAP Service Marketplace](https://websmp201.sap-ag.de/home).
+
+
+
+#Installation
+
+
+#Examples
+
+- Check the examples in examples directory
+- On executing it, it generates a SAP Lumira Extension
+- Other sample .jpg files provided in images directory
+
+#Technologies used
+
+- Gadfly
+- canvg
+
+#Todo
+
+- Adding more test cases for Travis CI builds
+- Adding a wiki
+- Bug fixes
