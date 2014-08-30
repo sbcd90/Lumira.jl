@@ -2,15 +2,21 @@ module Lumira
 
 # package code goes here
 using Gadfly
+using Base.show
 
-export setId,setName,getId,getName,exportToSVG,createLumiraExtension
+export setId,setName,getId,getName,setToWriteToFile,exportToSVG,createTemplate,createChartCode,createLumiraExtension
 
 type LumiraExtension
     Id::String
     Name::String
 end
 
+type flagToWriteToFile
+    flag::Bool
+end    
+
 extn = LumiraExtension("","") 
+fileotpt = flagToWriteToFile(true)
 
 function setId(identifier)
 	extn.Id = identifier
@@ -28,9 +34,15 @@ function getName()
     extn.Name
 end
 
+function setToWriteToFile(flag)
+    fileotpt.flag = flag
+end      
+
 function exportToSVG(plot)
     draw(SVG("tempplot.svg",22cm ,16cm), plot)
 end  
+
+#use this function to create SAP Lumira Extension
 
 function createLumiraExtension()
     if extn.Id != "" && extn.Name != ""
@@ -57,9 +69,13 @@ function createLumiraExtension()
         pathFormer = string(pathFormer,folderPath,"/")
         templatePathFormer = string("resources/","templates/","sample/")
         
-        file = open("createFolderStruct.bat","w")
-        write(file,commandList)
-        close(file)
+        if fileotpt.flag==true
+            file = open("createFolderStruct.bat","w")
+            write(file,commandList)
+            close(file)
+        else
+            return true
+        end
         
         run (`createFolderStruct.bat`)
         run (`rm createFolderStruct.bat`)
@@ -104,7 +120,9 @@ function parseXML()
 end
 
 function createChartCode(folderPath)
-    file = open(folderPath,"w")
+    if fileotpt.flag==true
+        file = open(folderPath,"w")
+    end     
     
     jsCodeString = string("(function() {",
 "    /**",
@@ -469,9 +487,13 @@ function createChartCode(folderPath)
 "\n",
 "})();\n"
 )
-
-    write(file,jsCodeString)
-    close(file)
+    
+    if fileotpt.flag==true
+        write(file,jsCodeString)
+        close(file)
+    else
+        return true
+    end    
 end
 
 function createTemplate(path)
@@ -493,10 +515,14 @@ function createTemplate(path)
 "};\n",
 "sap.viz.extapi.env.Template.register(sampleTemplate);\n"
 )
-
-    file = open(path,"w")
-    write(file,templateCode)
-    close(file)
+    
+    if fileotpt.flag==true
+        file = open(path,"w")
+        write(file,templateCode)
+        close(file)
+    else
+        true
+    end    
     
 end    
 
