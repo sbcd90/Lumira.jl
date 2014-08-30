@@ -31,4 +31,3 @@ SAP Lumira is a visualization tool developed by SAP SE & can be downloaded from 
 #Todo
 
 - Adding a wiki
-- Bug fixes
